@@ -1,0 +1,48 @@
+@echo off
+setlocal enabledelayedexpansion
+
+set "file=misfichajes.csv"
+if not exist "%file%" (echo Error: %file% not found. & exit /b)
+
+echo =====================================
+echo        SMART GOAL TRACKER
+echo =====================================
+
+powershell -Command ^
+    "$entries = Import-Csv '%file%' -Header Date,Time,Action | Where-Object { $_.Date -and $_.Time -and $_.Action };" ^
+    "$goalSecs = (7 * 3600) + (52 * 60);" ^
+    "$discount = 1200;" ^
+    "$today = (Get-Date).Date;" ^
+    "$weekStart = (Get-Date).AddDays(-( [int](Get-Date).DayOfWeek - 1)).Date;" ^
+    "$todayFirst = $entries | Where-Object { (Get-Date $_.Date) -eq $today -and $_.Action -eq 'Entrada' } | Select-Object -First 1;" ^
+    "$weekFirst = $entries | Where-Object { (Get-Date $_.Date) -ge $weekStart -and $_.Action -eq 'Entrada' } | Select-Object -First 1;" ^
+    "if ($todayFirst) {" ^
+    "    $startTime = Get-Date $todayFirst.Time;" ^
+    "    $needed = $goalSecs; if ($startTime.Hour -lt 13) { $needed += $discount };" ^
+    "    $target = $startTime.AddSeconds($needed);" ^
+    "    Write-Host \"Today started at: $($startTime.ToString('HH:mm'))\" -ForegroundColor Gray;" ^
+    "    Write-Host \"Target departure TODAY:  $($target.ToString('HH:mm'))\" -ForegroundColor Green;" ^
+    "} else { Write-Host 'No Entrada found for today.' -ForegroundColor Yellow };" ^
+    "if ($weekFirst) {" ^
+    "    $wStart = Get-Date $weekFirst.Time;" ^
+    "    $wTarget = $wStart.AddSeconds(($goalSecs * 5) + ($discount * 5));" ^
+    "    Write-Host \"Target departure WEEK:   $($wTarget.ToString('ddd HH:mm'))\" -ForegroundColor Cyan;" ^
+    "}" ^
+    "Write-Host '-------------------------------------';"
+
+:: Store last action for alternation check
+for /f "tokens=3 delims=," %%A in ('powershell -Command "$l = Get-Content '%file%' | Select-Object -Last 1; if ($l) { $l.Split(',')[-1].Trim() } else { 'None' }"') do (set "last_action=%%A")
+
+:choice
+set /p "user_input=Do you want (e)ntrada o (s)alida? "
+if /i "%user_input%"=="e" (set "action=Entrada") else if /i "%user_input%"=="s" (set "action=Salida") else (goto choice)
+
+if /i "%action%"=="%last_action%" (
+    echo ERROR: Last entry was %last_action%. You must alternate.
+    goto choice
+)
+
+:: Save Entry
+powershell -Command "$d = Get-Date; Add-Content -Path '%file%' -Value \"$($d.ToString('ddd MM/dd/yyyy')),$($d.ToString('HH:mm:ss.ff')),%action%\""
+echo Data saved.
+pause
