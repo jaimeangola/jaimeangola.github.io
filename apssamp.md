@@ -115,15 +115,19 @@ heads are parameters $\alpha_{i,j}$ not shown here. The terrain layer in
 green at the bottom and a middle channel network obtained from signed
 differences in the aggregated values of head + height values of adjacent
 cells. Time subscripts have been omitted for
-simplicity.](fig1.jpg){#fig:wide}
+simplicity.](fig1.jpg)
 
 The function to optimize is the negative of the potential energy. i.e.
-we want $L$ to be as negative as we can: $$
+we want $L$ to be as negative as we can: 
+$$
   L_{free} = -V = -  \sum_{i,j}(\alpha_{i,j}^t + z_{i,j}^t)h_{i,j}^t
-$$ subject to two constrains. The first one is mass
-conservation: $$
+$$ 
+subject to two constrains. The first one is mass
+conservation: 
+$$
     alpha_{i,j}^0h_{i,j}^0 = \sum_{i,j}\alpha_{i,j}^th_{i,j}^t
-$$ (water spreads, but no water is lost, this forces on us
+$$ 
+(water spreads, but no water is lost, this forces on us
 to set a lower bound to $\alpha_{i,j}$ where to stop covering more area
 which we set to $1$). The second is that inertia alone drives the
 dynamics: water covers cells according to gravity, minimizing its
