@@ -27,7 +27,7 @@ nocite: "`\\nocite{*}`{=latex}"
 
 ---
 
-# INTRODUCTION:
+# []{#sec:level1 label="sec:level1"}INTRODUCTION:
 
 Flood risk assessment and subsequent damage prevention is gaining
 attention in the recent years. Even more acute is the urge for enhancing
@@ -53,12 +53,12 @@ Optimization (QUBO) representation on paper containing the
 Deterministic-8 method, applying it to selected cases to showcase its
 use, ending with conclusions.
 
-## Theoretical Formulation
+# []{#sec:level2 label="sec:level2"}Theoretical Formulation
 
 We follow notation introduced by O'Malley(O'Malley 2018) whenever
 possible.
 
-### Deterministic-8 General QUBO
+## []{#sec:level2 label="sec:level2"}Deterministic-8 General QUBO
 
 Deterministic-8 is a method self-described by its own name, being the
 first solution anyone can think of when faced with deciding, like in a
@@ -115,19 +115,15 @@ heads are parameters $\alpha_{i,j}$ not shown here. The terrain layer in
 green at the bottom and a middle channel network obtained from signed
 differences in the aggregated values of head + height values of adjacent
 cells. Time subscripts have been omitted for
-simplicity.](fig1.jpg)
+simplicity.](fig1.jpg){#fig:wide}
 
 The function to optimize is the negative of the potential energy. i.e.
-we want $L$ to be as negative as we can: 
-$$
+we want $L$ to be as negative as we can: $$\begin{equation}
   L_{free} = -V = -  \sum_{i,j}(\alpha_{i,j}^t + z_{i,j}^t)h_{i,j}^t
-$$ 
-subject to two constrains. The first one is mass
-conservation: 
-$$
-    alpha_{i,j}^0h_{i,j}^0 = \sum_{i,j}\alpha_{i,j}^th_{i,j}^t
-$$ 
-(water spreads, but no water is lost, this forces on us
+\end{equation}$$ subject to two constrains. The first one is mass
+conservation: $$\begin{equation}
+    \alpha_{i,j}^0h_{i,j}^0 = \sum_{i,j}\alpha_{i,j}^th_{i,j}^t
+\end{equation}$$ (water spreads, but no water is lost, this forces on us
 to set a lower bound to $\alpha_{i,j}$ where to stop covering more area
 which we set to $1$). The second is that inertia alone drives the
 dynamics: water covers cells according to gravity, minimizing its
@@ -136,7 +132,7 @@ Statistical Mechanics(Costa and Pessoa 2021). This potential to change
 vertex will be represented by an interaction term between the content of
 neighboring cells We build the later using the following steps. The
 direction of movement is signed as we saw, for example for moving along
-the $x$ axis: $$
+the $x$ axis: $$\begin{equation}
   \frac{z_{i+1,j}^t - z_{i,j}^t }{|z_{i+1,j}^t - z_{i,j}^t|}=\begin{cases}-1, &  z_{i+1,j}^t < z_{i,j}^t \\0,  &  z_{i+1,j}^t = z_{i,j}^t\\1,  &  z_{i+1,j}^t > z_{i,j}^t 
 \end{cases}
 \end{equation}$$ This factor serves as a switch to automatically turn
@@ -171,7 +167,7 @@ $$\begin{multline}
   L =  -  \frac{1}{2}\sum_{i,j}\Bigl[\Bigl([(1-\gamma) + (1+\gamma)\hat{k}_{i,j}^{\mu,t}]\alpha_{i,j}^t + (1+\hat{k}_{i,j}^{\mu,t})z_{i,j}^t\Bigr)h_{i,j}^t -\\\Bigl(1-\hat{k}_{i,j}^{\mu,t}\Bigr)\sum_{i,j}[(\alpha_{i,j}^{t+1} + z_{i,j}^t)h_{i,j}^{t+1} + \gamma \alpha_{i,j}^0h_{i,j}^0 \Bigr]
 \end{multline}$$
 
-### Physical considerations
+## []{#sec:level3 label="sec:level3"}Physical considerations
 
 In this model no other physical effect is considered. Nonetheless see
 that it is legitimate to let the amount of water vary at anytime (*e.g.*
@@ -187,7 +183,7 @@ dynamics, the next-to-next neighbor structure is built-in for the
 problem of spreading of water flow, at least when far from supersonic or
 high cavitation regimes.
 
-# *In Machina* implementation description
+# []{#sec:level4 label="sec:level4"}*In Machina* implementation description
 
 We have developed our model, now we apply it to some showcase examples
 growing in difficulty.
