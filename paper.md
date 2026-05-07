@@ -2,7 +2,6 @@
 ## another edge between Quantum Computation and Hydrology
 
 Jaime Anguiano Olarra
-orcid: 0000-0002-6447-8180
 
 2026-05-05
 
