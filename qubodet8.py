@@ -12,9 +12,10 @@ def qubo_det_8(terrain, heads, wet_cells, debug=False):
     Follows a one-hot scheme.
 
     Returns:
-    A 3x3 grid with the resulting channel network
-    The index for the next cell towards were to move
-    The steepest descent value for terrain + water
+    Three 3x3 grids:
+    The channel network
+    The new configuration for the heads
+    The new configuration for the wet_cells (binary grid)
     """
     bench = %timeit -n 1 -r 5  -o [x for x in range(10)] 
     print(f"Best time: {bench.best}")
@@ -43,11 +44,22 @@ def qubo_det_8(terrain, heads, wet_cells, debug=False):
     best = response.first.sample
     
     destination = [j for j, v in best.items() if v == 1][0]
+    # The next can be optimized defining new local variables, it is
+    # written as it is for clarity
+    if (abs_diffs[destination] - t_f[4] > h_f[4]):
+        h_f[destination] = h_f[4]
+        h_f[4] = 0
+        w_f[4] = 0
+        w_f[destination] = 1
+    else:
+        h_f[destination] = (h_f[4] - (t_f[destination] - t_f[4]))/2
+        h_f[4] = h_f[4] - h_f[destination]
+        w_f[destination] = 1
     if(debug == True):
         print("Sampler Properties:", sampler.properties)
         print("Sampler results: ", response)
     
-    return channel_network, destination, abs_diffs[destination]
+    return channel_network, h_f.reshape(terrain.shape), w_f.reshape(terrain.shape)
 
 notation  = np.array([["a00","a01","a02"],["a10","a11","a12"],["a20","a21","a22"]])
 terrain = np.array([[6, 5, 5], [7, 2, 5], [0, 4, 6]])
@@ -59,9 +71,7 @@ print("QUBO for deterministic-8\n(C) 2026, Jaime Anguiano Olarra (jaimeangola.gi
 print("Simple model for the widely used routine in Hydrology")
 print("Read paper for more information (distributed under the GPLv3 (2007)")
 print("----------------------------------------------------------------------------------------")
-channel_network, destination, extremeval = qubo_det_8(terrain, heads, wet_cells, debug=True)
+channel_network, newheads, newwets = qubo_det_8(terrain, heads, wet_cells, debug=True)
 print(f"Notation, for a general matrix A:\n{notation}")
 print(f"Terrain:\n{terrain}\nChannel network:\n{channel_network}\nHeads:\n{heads}\n")
-print(f"Max difference: {extremeval}")
-row, col = np.unravel_index(destination, terrain.shape)
-print(f"Next cell: z_{row}{col}")
+print(f"Terrain:\n{terrain}\nNew heads:\n{newheads}\nNew wets:\n{newwets}\n")
