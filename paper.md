@@ -336,7 +336,7 @@ of Granada, Spain, for useful discussions and review of this manuscript.
 <div id="ref-qubodet8" class="csl-entry">
 
 Anguiano Olarra, Jaime. 2026. *quboDet8*. Self.
-<https://github.com/jaimeangola/jaimeangola.github.io/blob/qubodet8/>.
+<https://github.com/jaimeangola.github.io/blob/qubodet8/>.
 
 </div>
 
