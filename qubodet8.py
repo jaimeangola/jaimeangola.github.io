@@ -56,8 +56,8 @@ def qubo_det_8(terrain, heads, wet_cells, debug=False):
         h_f[4] = h_f[4] - h_f[destination]
         w_f[destination] = 1
     if(debug == True):
-        print("Sampler Properties:", sampler.properties)
-        print("Sampler results: ", response)
+        print("Sampler Properties:\n", sampler.properties)
+        print("Sampler results:\n", response)
     
     return channel_network, h_f.reshape(terrain.shape), w_f.reshape(terrain.shape)
 
