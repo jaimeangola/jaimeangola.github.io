@@ -27,7 +27,7 @@ nocite: "`\\nocite{*}`{=latex}"
 
 ---
 
-# []{#sec:level1 label="sec:level1"}INTRODUCTION:
+# INTRODUCTION:
 
 Flood risk assessment and subsequent damage prevention is gaining
 attention in the recent years. Even more acute is the urge for enhancing
