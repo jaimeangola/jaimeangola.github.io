@@ -1,10 +1,10 @@
 # QUBO for deterministic-8 and flow accumulation:
 ## another edge between Quantum Computation and Hydrology
-author:
-  Jaime Anguiano Olarra
-  orcid: 0000-0002-6447-8180
-bibliography: apssamp.bib
-date: 2026-05-05
+
+Jaime Anguiano Olarra
+orcid: 0000-0002-6447-8180
+
+2026-05-05
 
 # <span id="sec:level1" label="sec:level1"></span>INTRODUCTION:
 
