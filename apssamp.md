@@ -27,7 +27,7 @@ nocite: "`\\nocite{*}`{=latex}"
 
 ---
 
-#INTRODUCTION:
+# []{#sec:level1 label="sec:level1"}INTRODUCTION:
 
 Flood risk assessment and subsequent damage prevention is gaining
 attention in the recent years. Even more acute is the urge for enhancing
@@ -53,12 +53,12 @@ Optimization (QUBO) representation on paper containing the
 Deterministic-8 method, applying it to selected cases to showcase its
 use, ending with conclusions.
 
-##Theoretical Formulation
+# []{#sec:level2 label="sec:level2"}Theoretical Formulation
 
 We follow notation introduced by O'Malley(O'Malley 2018) whenever
 possible.
 
-###Deterministic-8 General QUBO
+## []{#sec:level2 label="sec:level2"}Deterministic-8 General QUBO
 
 Deterministic-8 is a method self-described by its own name, being the
 first solution anyone can think of when faced with deciding, like in a
@@ -167,7 +167,7 @@ $$\begin{multline}
   L =  -  \frac{1}{2}\sum_{i,j}\Bigl[\Bigl([(1-\gamma) + (1+\gamma)\hat{k}_{i,j}^{\mu,t}]\alpha_{i,j}^t + (1+\hat{k}_{i,j}^{\mu,t})z_{i,j}^t\Bigr)h_{i,j}^t -\\\Bigl(1-\hat{k}_{i,j}^{\mu,t}\Bigr)\sum_{i,j}[(\alpha_{i,j}^{t+1} + z_{i,j}^t)h_{i,j}^{t+1} + \gamma \alpha_{i,j}^0h_{i,j}^0 \Bigr]
 \end{multline}$$
 
-###Physical considerations
+## []{#sec:level3 label="sec:level3"}Physical considerations
 
 In this model no other physical effect is considered. Nonetheless see
 that it is legitimate to let the amount of water vary at anytime (*e.g.*
@@ -183,14 +183,14 @@ dynamics, the next-to-next neighbor structure is built-in for the
 problem of spreading of water flow, at least when far from supersonic or
 high cavitation regimes.
 
-#*In Machina* implementation description
+# []{#sec:level4 label="sec:level4"}*In Machina* implementation description
 
 We have developed our model, now we apply it to some showcase examples
 growing in difficulty.
 
-##Showcase examples
+## []{#sec:level4 label="sec:level4"}Showcase examples
 
-###1-D Dam failure**
+### []{#sec:level1 label="sec:level1"}**1-D Dam failure**
 
 We remove the $j$ index as there is no need for it. This is the most
 simple model of dam failure. We have two units of water on the only cell
@@ -214,7 +214,7 @@ inclusion of the $\alpha_{i,j}^t$ as part of the switch function.
     \left[\left[h_0^{t=1}=1, \alpha_0^{t=1} = 1\right], \left[h_1^{t=1}=1, \alpha_1^{t=1} = 1\right]\right]
 \end{equation}$$
 
-###**3-D flooding**
+### []{#sec:level2 label="sec:level2"}**3-D flooding**
 
 [**Initial state:**]{.smallcaps}
 
@@ -271,7 +271,7 @@ what otherwise are accumulation points, the vertex $z_{1,1}^t$ in our
 grid, can be mere parts of a channel even with negligible Strahler order
 in an larger catchment area.
 
-##Conclusions
+## []{#sec:citeref label="sec:citeref"}Conclusions
 
 The simplicity of this proof of concept model makes it suitable to be
 coded using almost any framework for quantum computing at the present
