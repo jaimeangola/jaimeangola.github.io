@@ -310,13 +310,13 @@ time. In D-Wave’s Ocean SDK(D-Wave Systems Inc., n.d.) this can be
 achieved using a quadratic model and an ExactSolver without requiring
 running it on actual quantum architectures. Considering the smallness of
 these showcases calls for sticking to the ExactSolver. A version of it
-using D-Wave’s SimulatedAnnealingSampler() is available(Olarra 2026). On
-the other hand, a full-scale model for massive grids will certainly be
-of much interest. This has not been pursued during the elaboration of
-this first work but it is under development. The arrival of Quantum
-Optimization to the field of flood risk assessment is very promising but
-it is still not here. May this small step contribute to the collective
-work towards this objective.\
+using D-Wave’s SimulatedAnnealingSampler() is available(Anguiano Olarra
+2026). On the other hand, a full-scale model for massive grids will
+certainly be of much interest. This has not been pursued during the
+elaboration of this first work but it is under development. The arrival
+of Quantum Optimization to the field of flood risk assessment is very
+promising but it is still not here. May this small step contribute to
+the collective work towards this objective.\
 
 <div class="acknowledgments">
 
@@ -327,6 +327,13 @@ of Granada, Spain, for useful discussions and review of this manuscript.
 </div>
 
 <div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-qubodet8" class="csl-entry">
+
+Anguiano Olarra, Jaime. 2026. *quboDet8*. Self.
+<https://https://github.com/jaimeangola/jaimeangola.github.io/blob/qubodet8/>.
+
+</div>
 
 <div id="ref-CalvoSancho2026" class="csl-entry">
 
@@ -383,13 +390,6 @@ GitHub.
 O’Malley, Daniel. 2018. “An Approach to Quantum-Computational Hydrologic
 Inverse Analysis.” *Scientific Reports* 8 (1): 6919.
 <https://doi.org/10.1038/s41598-018-25206-0>.
-
-</div>
-
-<div id="ref-qubodet8" class="csl-entry">
-
-Olarra, Jaime Anguiano. 2026. *quboDet8*. Self.
-<https://github.com/jaimeangola/jaimeangola.github.io>.
 
 </div>
 
